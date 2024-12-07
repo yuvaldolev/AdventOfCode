@@ -1,5 +1,5 @@
 use advent_of_code::PuzzleInputDownloader;
-use day1_part2_2024::PuzzleSolver;
+use day1_2024_part2::PuzzleSolver;
 
 fn main() -> anyhow::Result<()> {
     dotenv::dotenv().ok();

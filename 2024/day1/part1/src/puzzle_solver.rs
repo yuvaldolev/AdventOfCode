@@ -1,6 +1,6 @@
 use std::iter;
 
-use day1_common_2024::InputProcessor;
+use day1_2024_common::InputProcessor;
 
 pub struct PuzzleSolver {
     input_processor: InputProcessor,
@@ -13,7 +13,7 @@ impl PuzzleSolver {
         }
     }
 
-    pub fn solve(&self, input: &str) -> day1_common_2024::Result<u32> {
+    pub fn solve(&self, input: &str) -> day1_2024_common::Result<u32> {
         let (mut left, mut right) = self.input_processor.process(input)?;
 
         left.sort();

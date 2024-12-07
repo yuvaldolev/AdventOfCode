@@ -117,29 +117,46 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "773648b94d0e5d620f64f280777445740e61fe701025087ec8b57f45c791888b"
 
 [[package]]
-name = "day1_common_2024"
+name = "day1_2024_common"
 version = "0.1.0"
 dependencies = [
  "thiserror",
 ]
 
 [[package]]
-name = "day1_part1_2024"
+name = "day1_2024_part1"
 version = "0.1.0"
 dependencies = [
  "advent_of_code",
  "anyhow",
- "day1_common_2024",
+ "day1_2024_common",
  "dotenv",
 ]
 
 [[package]]
-name = "day1_part2_2024"
+name = "day1_2024_part2"
 version = "0.1.0"
 dependencies = [
  "advent_of_code",
  "anyhow",
- "day1_common_2024",
+ "day1_2024_common",
+ "dotenv",
+]
+
+[[package]]
+name = "day2_2024_common"
+version = "0.1.0"
+dependencies = [
+ "thiserror",
+]
+
+[[package]]
+name = "day2_2024_part1"
+version = "0.1.0"
+dependencies = [
+ "advent_of_code",
+ "anyhow",
+ "day2_2024_common",
  "dotenv",
 ]
 

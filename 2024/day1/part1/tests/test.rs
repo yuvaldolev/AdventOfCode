@@ -1,4 +1,4 @@
-use day1_part1_2024::PuzzleSolver;
+use day1_2024_part1::PuzzleSolver;
 
 #[test]
 fn test_example_input() {

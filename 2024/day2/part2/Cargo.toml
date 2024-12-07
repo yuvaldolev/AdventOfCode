@@ -1,0 +1,11 @@
+[package]
+name = "day2_2024_part2"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+advent_of_code = { path = "../../../advent_of_code" }
+anyhow = { version = "1.0.94", features = ["backtrace"] }
+day2_2024_common = { path = "../common" }
+dotenv = "0.15.0"
+itertools = "0.13.0"

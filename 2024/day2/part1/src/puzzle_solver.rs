@@ -13,19 +13,16 @@ impl PuzzleSolver {
 
     pub fn solve(&self, input: &str) -> day2_2024_common::Result<usize> {
         let reports = self.input_processor.process(input)?;
+
         let safe_reports = reports
             .iter()
             .filter(|&report| {
-                (report
+                report
                     .windows(2)
-                    .filter(|&levels| (levels[0] <= levels[1]) || (levels[0] - levels[1] > 3))
-                    .count()
-                    == 0)
-                    || (report
+                    .all(|levels| (levels[0] < levels[1]) && (levels[1] - levels[0] <= 3))
+                    || report
                         .windows(2)
-                        .filter(|&levels| (levels[0] >= levels[1]) || (levels[1] - levels[0] > 3))
-                        .count()
-                        == 0)
+                        .all(|levels| (levels[0] > levels[1]) && (levels[0] - levels[1] <= 3))
             })
             .count();
 

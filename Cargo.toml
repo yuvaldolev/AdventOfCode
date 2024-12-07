@@ -7,5 +7,8 @@ members = [
     "2024/day2/common",
     "2024/day2/part1",
     "2024/day2/part2",
+    "2024/day3/common",
+    "2024/day3/part1",
+    "2024/day3/part2",
     "advent_of_code",
 ]

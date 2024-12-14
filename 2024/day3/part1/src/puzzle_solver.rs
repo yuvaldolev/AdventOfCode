@@ -1,15 +1,18 @@
 use day3_2024_common::{InputParser, Instruction};
 
-pub struct PuzzleSolver;
+pub struct PuzzleSolver {
+    input_parser: InputParser,
+}
 
 impl PuzzleSolver {
     pub fn new() -> Self {
-        Self
+        Self {
+            input_parser: InputParser::new(),
+        }
     }
 
     pub fn solve(&self, input: &str) -> day3_2024_common::Result<u32> {
-        let input_parser = InputParser::new();
-        let instructions = input_parser.parse(input)?;
+        let instructions = self.input_parser.parse(input)?;
 
         let result = instructions
             .iter()

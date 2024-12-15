@@ -24,24 +24,42 @@ impl PuzzleSolver {
                     continue;
                 }
 
-                if self.search_horizontal(&puzzle, x, y, 1) {
-                    occurrences += 1;
-                }
-
-                // search_horizontal(puzzle, x, y, -1);
-                // search_vertical(puzzle, x, y, 1);
-                // search_vertical(puzzle, x, y, -1);
-                // search_diagonal(puzzle, x, y, 1);
-                // search_diagonal(puzzle, x, y, -1);
+                occurrences += (-1isize..=1isize)
+                    .flat_map(|step_x| (-1isize..=1isize).map(move |step_y| (step_x, step_y)))
+                    .filter(|(step_x, step_y)| self.search(&puzzle, x, y, *step_x, *step_y))
+                    .count();
             }
         }
 
         occurrences
     }
 
-    fn search_horizontal(&self, puzzle: &[Vec<char>], x: usize, y: usize, step: isize) -> bool {
-        if ((x as isize) + (step * (self.needle.len() as isize))) as usize > puzzle[0].len() {
-            return false;
+    fn search(
+        &self,
+        puzzle: &[Vec<char>],
+        x: usize,
+        y: usize,
+        step_x: isize,
+        step_y: isize,
+    ) -> bool {
+        let mut current_x = x as isize;
+        let mut current_y = y as isize;
+
+        for needle_character in self.needle.iter() {
+            if (current_x < 0) || ((current_x as usize) >= puzzle[0].len()) {
+                return false;
+            }
+
+            if (current_y < 0) || ((current_y as usize) >= puzzle.len()) {
+                return false;
+            }
+
+            if *needle_character != puzzle[current_y as usize][current_x as usize] {
+                return false;
+            }
+
+            current_x = current_x + (1 * step_x);
+            current_y = current_y + (1 * step_y);
         }
 
         true

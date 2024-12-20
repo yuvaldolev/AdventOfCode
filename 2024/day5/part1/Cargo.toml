@@ -1,0 +1,11 @@
+[package]
+name = "day5_2024_part1"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+advent_of_code = { path = "../../../advent_of_code" }
+anyhow = { version = "1.0.94", features = ["backtrace"] }
+day5_2024_common = { path = "../common" }
+dotenv = "0.15.0"
+the_algorithms_rust = { git = "https://github.com/TheAlgorithms/Rust.git" }

@@ -13,5 +13,7 @@ members = [
     "2024/day4/common",
     "2024/day4/part1",
     "2024/day4/part2",
+    "2024/day5/common",
+    "2024/day5/part1",
     "advent_of_code",
 ]

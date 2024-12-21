@@ -18,9 +18,8 @@ impl PuzzleSolver {
 
         let mut world = World::new(world_data);
         world.simulate();
+        let unique_guard_positions = world.get_unique_guard_positions();
 
-        let guard_positions = world.get_tracker().get_guard_positions();
-
-        Ok(guard_positions.len())
+        Ok(unique_guard_positions.len())
     }
 }

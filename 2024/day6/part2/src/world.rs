@@ -1,8 +1,3 @@
-use std::collections::HashSet;
-
-use day6_2024_common::WorldData;
-use glam::UVec2;
-
 use crate::{guard::Guard, lab::Lab, tracker::Tracker};
 
 pub struct World {
@@ -12,13 +7,8 @@ pub struct World {
 }
 
 impl World {
-    pub fn new(data: WorldData) -> Self {
-        let lab = Lab::new(data.get_lab_tiles().to_vec());
-        let guard = Guard::new(
-            data.get_initial_guard_position(),
-            data.get_initial_guard_velocity(),
-        );
-        let tracker = Tracker::new(data.get_initial_guard_position());
+    pub fn new(lab: Lab, guard: Guard) -> Self {
+        let tracker = Tracker::new(guard.get_position(), guard.get_velocity());
 
         Self {
             lab,
@@ -27,12 +17,12 @@ impl World {
         }
     }
 
-    pub fn simulate(&mut self) {
+    pub fn simulate(&mut self) -> bool {
         loop {
             let next_guard_position = self.guard.get_next_position();
 
             if self.lab.is_out_of_bounds(next_guard_position) {
-                break;
+                return true;
             }
 
             if self.lab.is_colliding_with_obstacle(next_guard_position) {
@@ -41,12 +31,16 @@ impl World {
             }
 
             self.guard.move_to_position(next_guard_position.as_uvec2());
-            self.tracker
-                .track_guard_movement(next_guard_position.as_uvec2());
-        }
-    }
 
-    pub fn get_unique_guard_positions(&self) -> &HashSet<UVec2> {
-        self.tracker.get_guard_positions()
+            if self.tracker.is_guard_movement_already_tracked(
+                self.guard.get_position(),
+                self.guard.get_velocity(),
+            ) {
+                return false;
+            }
+
+            self.tracker
+                .track_guard_movement(self.guard.get_position(), self.guard.get_velocity());
+        }
     }
 }
